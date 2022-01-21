@@ -1,4 +1,4 @@
-package com.cd.wj.dao;
+package com.cd.wj.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cd.wj.entity.Company;

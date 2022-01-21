@@ -3,7 +3,7 @@ package com.cd.wj.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cd.wj.dao.CompanyDao;
+import com.cd.wj.mapper.CompanyDao;
 import com.cd.wj.entity.Company;
 import com.cd.wj.service.CompanyService;
 import org.apache.commons.lang3.StringUtils;

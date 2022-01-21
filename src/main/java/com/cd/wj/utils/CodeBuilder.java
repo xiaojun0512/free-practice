@@ -1,32 +1,28 @@
 package com.cd.wj.utils;
 
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Scanner;
 
 /**
  * 自动生成mybatis plus的相关代码
  */
 public class CodeBuilder {
 
-    public static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
-        if (scanner.hasNext()) {
-            String ipt = scanner.next();
-            if (StringUtils.isNotEmpty(ipt)) {
-                return ipt;
-            }
-        }
-        throw new MybatisPlusException("请输入正确的" + tip + "！");
-    }
+    //创建者
+    private static final String author = "xj";
+    //表名,多个表名之间用逗号隔开
+    private static final String tableNames = "payment";
+
+    //数据库配置
+    private static final String dbUrl = "jdbc:mysql://127.0.0.1:3306/mytest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true";
+    private static final String dbDriverName = "com.mysql.cj.jdbc.Driver";
+    private static final String dbUserName = "root";
+    private static final String dbPassword = "123456";
+
+    //父包名
+    private static final String parent = "com.cd.wj";
 
     public static void main(String[] args) {
         // 代码生成器
@@ -36,24 +32,23 @@ public class CodeBuilder {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("xj");
+        gc.setAuthor(author);
         gc.setOpen(false);
         //实体属性 Swagger2 注解
-        gc.setSwagger2(false);
+        gc.setSwagger2(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/mytest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true");
-        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setUrl(dbUrl);
+        dsc.setDriverName(dbDriverName);
+        dsc.setUsername(dbUserName);
+        dsc.setPassword(dbPassword);
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-//        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.cd.wj");
+        pc.setParent(parent);
         pc.setEntity("entity");
         pc.setMapper("mapper");
         pc.setService("service");
@@ -113,7 +108,7 @@ public class CodeBuilder {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.baomidou.mybatisplus.extension.activerecord.Model");
+//        strategy.setSuperEntityClass("com.baomidou.mybatisplus.extension.activerecord.Model");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
 
@@ -122,9 +117,8 @@ public class CodeBuilder {
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
-        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
+        strategy.setInclude(tableNames.split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
