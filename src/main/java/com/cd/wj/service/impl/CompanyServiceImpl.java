@@ -31,7 +31,7 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     }
 
     @Override
-    public Page<Company> getCompanyType(String id) {
+    public Page<Company> getCompanyType(Integer id) {
         Page<Company> page = new Page<>();
         return baseMapper.getCompanyType(page,id);
     }

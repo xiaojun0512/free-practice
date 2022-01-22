@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface CompanyMapper extends BaseMapper<Company> {
-    Page<Company> getCompanyType(Page<Company> page,@Param("id") String id);
+    Page<Company> getCompanyType(Page<Company> page,@Param("id") Integer id);
 }

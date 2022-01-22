@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cd.wj.entity.Company;
 import com.cd.wj.service.CompanyService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +35,10 @@ public class CompanyController {
 
     @GetMapping("getCompanyType")
     @ApiOperation(value = "获取公司性质")
-    public Page<Company> getCompanyType(@RequestParam("id") String id){
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query",dataType = "int", name = "id", value = "id", required = true)
+    })
+    public Page<Company> getCompanyType(@RequestParam("id") Integer id){
         return companyService.getCompanyType(id);
     }
 }

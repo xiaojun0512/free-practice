@@ -9,5 +9,5 @@ public interface CompanyService {
 
     Page<Company> getCompanyByCondition(Company company);
 
-    Page<Company> getCompanyType(String id);
+    Page<Company> getCompanyType(Integer id);
 }
