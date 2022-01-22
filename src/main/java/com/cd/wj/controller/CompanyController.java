@@ -6,10 +6,7 @@ import com.cd.wj.service.CompanyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("test")
@@ -32,5 +29,11 @@ public class CompanyController {
     @ApiOperation(value = "获取公司信息")
     public Page<Company> getCompanyByCondition(@RequestBody Company company){
         return companyService.getCompanyByCondition(company);
+    }
+
+    @GetMapping("getCompanyType")
+    @ApiOperation(value = "获取公司性质")
+    public Page<Company> getCompanyType(@RequestParam("id") String id){
+        return companyService.getCompanyType(id);
     }
 }

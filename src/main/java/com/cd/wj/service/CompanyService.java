@@ -8,4 +8,6 @@ public interface CompanyService {
     Integer addCompany(Company company);
 
     Page<Company> getCompanyByCondition(Company company);
+
+    Page<Company> getCompanyType(String id);
 }

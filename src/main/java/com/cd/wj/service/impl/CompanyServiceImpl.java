@@ -3,14 +3,14 @@ package com.cd.wj.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.cd.wj.mapper.CompanyDao;
+import com.cd.wj.mapper.CompanyMapper;
 import com.cd.wj.entity.Company;
 import com.cd.wj.service.CompanyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyServiceImpl extends ServiceImpl<CompanyDao, Company> implements CompanyService {
+public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> implements CompanyService {
 
     @Override
     public Integer addCompany(Company company) {
@@ -28,5 +28,11 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyDao, Company> impleme
         wrapper.like(StringUtils.isNotBlank(company.getName()),"name",company.getName())
                 .orderByDesc("create_time");
         return baseMapper.selectPage(page,wrapper);
+    }
+
+    @Override
+    public Page<Company> getCompanyType(String id) {
+        Page<Company> page = new Page<>();
+        return baseMapper.getCompanyType(page,id);
     }
 }

@@ -37,4 +37,7 @@ public class Company {
     @ApiModelProperty(value = "大小")
     @TableField(exist = false)
     private Integer page;
+    @ApiModelProperty(value = "性质")
+    @TableField(exist = false)
+    private String nature;
 }
