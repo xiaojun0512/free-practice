@@ -2,7 +2,7 @@ server:
   port: 8808
 
 swagger:
-#swaggerÊÇ·ñ¿ªÆô
+  #swaggeræ˜¯å¦å¼€å¯
   swagger-ui-open: true
 
 spring:
@@ -14,16 +14,16 @@ spring:
 
 mybatis-plus:
   configuration:
-#    ¿ªÆôÍÕ·åÃüÃû¶ÔÓ¦×Ö¶Î
+#    å¼€å¯é©¼å³°å‘½åå¯¹åº”å­—æ®µ
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
-#   ´òÓ¡sqlÓï¾ä
+#   æ‰“å°sqlè¯­å¥
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:mapper/*Mapper.xml
 #  global-config:
-#    # Âß¼­É¾³ıÅäÖÃ
+#    # é€»è¾‘åˆ é™¤é…ç½®
 #    db-config:
-#      # É¾³ıÇ°
+#      # åˆ é™¤å‰
 #      logic-not-delete-value: 1
-#      # É¾³ıºó
+#      # åˆ é™¤å
 #      logic-delete-value: 0
