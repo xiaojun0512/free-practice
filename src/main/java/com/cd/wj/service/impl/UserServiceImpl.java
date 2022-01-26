@@ -1,5 +1,6 @@
 package com.cd.wj.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cd.wj.entity.User;
 import com.cd.wj.mapper.UserMapper;
 import com.cd.wj.service.UserService;
@@ -22,7 +23,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public String login(User user) {
         String token = "";
-        User u = baseMapper.selectById(user);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("name",user.getName()).eq("password",user.getPassword());
+        User u = baseMapper.selectOne(wrapper);
         if (ObjectUtils.isNotEmpty(u)) {
             token = TokenUtil.getToken(u);
         }

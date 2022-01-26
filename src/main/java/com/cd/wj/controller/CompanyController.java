@@ -1,6 +1,7 @@
 package com.cd.wj.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cd.wj.config.UserLoginToken;
 import com.cd.wj.entity.Company;
 import com.cd.wj.service.CompanyService;
 import io.swagger.annotations.Api;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("test")
+@RequestMapping("company")
 @Api(tags = "公司信息接口管理")
 public class CompanyController {
 
@@ -27,8 +28,12 @@ public class CompanyController {
         return companyService.addCompany(company);
     }
 
+//    @UserLoginToken
     @PostMapping("getCompanyByCondition")
     @ApiOperation(value = "获取公司信息")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(paramType = "header",dataType = "string", name = "token", value = "token", required = true)
+//    })
     public Page<Company> getCompanyByCondition(@RequestBody Company company){
         return companyService.getCompanyByCondition(company);
     }

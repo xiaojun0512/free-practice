@@ -13,7 +13,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticationInterceptor())
-//                .excludePathPatterns("/login")
+                .excludePathPatterns("/user/login","/doc.html","/swagger-resources")
                 .addPathPatterns("/**");
     }
 

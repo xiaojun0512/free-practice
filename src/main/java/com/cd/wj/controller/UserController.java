@@ -3,6 +3,7 @@ package com.cd.wj.controller;
 
 import com.cd.wj.entity.User;
 import com.cd.wj.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户管理")
 public class UserController {
 
     private final UserService userService;
