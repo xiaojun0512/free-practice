@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cd.wj.config.UserLoginToken;
 import com.cd.wj.entity.Company;
 import com.cd.wj.service.CompanyService;
+import com.cd.wj.utils.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -28,14 +29,14 @@ public class CompanyController {
         return companyService.addCompany(company);
     }
 
-//    @UserLoginToken
+    @UserLoginToken
     @PostMapping("getCompanyByCondition")
     @ApiOperation(value = "获取公司信息")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(paramType = "header",dataType = "string", name = "token", value = "token", required = true)
-//    })
-    public Page<Company> getCompanyByCondition(@RequestBody Company company){
-        return companyService.getCompanyByCondition(company);
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "string", name = "token", value = "token", required = true)
+    })
+    public CommonResult<Page<Company>> getCompanyByCondition(@RequestBody Company company){
+        return CommonResult.success(companyService.getCompanyByCondition(company));
     }
 
     @GetMapping("getCompanyType")
