@@ -22,4 +22,5 @@ mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml
 
 token:
+#  超时时间(毫秒)
   time_out: 600000

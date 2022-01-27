@@ -2,8 +2,10 @@ package com.cd.wj.entity;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 配置在静态方法中使用yml配置参数

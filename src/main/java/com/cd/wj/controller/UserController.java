@@ -3,6 +3,7 @@ package com.cd.wj.controller;
 
 import com.cd.wj.entity.User;
 import com.cd.wj.service.UserService;
+import com.cd.wj.utils.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,13 @@ public class UserController {
 
     @PostMapping("login")
     @ApiOperation(value = "登陆")
-    public String login(@RequestBody User user) {
-        return userService.login(user);
+    public CommonResult<String> login(@RequestBody User user) {
+        return CommonResult.success(userService.login(user));
+    }
+
+    @PostMapping("addUser")
+    @ApiOperation(value = "新增用户")
+    public CommonResult<String> addUser(@RequestBody User user) {
+        return CommonResult.success(userService.addUser(user));
     }
 }
