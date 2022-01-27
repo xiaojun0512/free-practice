@@ -20,7 +20,7 @@ public class CodeBuilder {
     //创建者
     private static final String author = "xj";
     //表名,多个表名之间用逗号隔开
-    private static final String tableNames = "user";
+    private static final String tableNames = "system_operation_log";
 
     //数据库配置
     private static final String dbUrl = "jdbc:mysql://127.0.0.1:3306/mytest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true";
