@@ -1,6 +1,11 @@
 server:
   port: 8808
 
+logging:
+  file:
+#    在项目根目录下生成目录
+    path: log
+
 swagger:
   #swagger是否开启
   swagger-ui-open: true

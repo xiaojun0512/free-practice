@@ -9,11 +9,14 @@ import com.cd.wj.service.CompanyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> implements CompanyService {
 
     @Override
     public Integer addCompany(Company company) {
+        company.setCreateTime(new Date());
         return baseMapper.insert(company);
     }
 
