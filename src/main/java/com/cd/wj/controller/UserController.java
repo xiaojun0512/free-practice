@@ -42,4 +42,10 @@ public class UserController {
     public CommonResult<String> addUser(@RequestBody User user) {
         return CommonResult.success(userService.addUser(user));
     }
+
+    @PostMapping("saveUserList")
+    @ApiOperation(value = "批量新增用户")
+    public CommonResult<String> saveUserList() {
+        return CommonResult.success(userService.saveUserList());
+    }
 }

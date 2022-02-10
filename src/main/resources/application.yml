@@ -29,3 +29,14 @@ mybatis-plus:
 token:
 #  超时时间(毫秒)
   time_out: 600000
+
+#多线程线程池
+executor:
+  # 配置核心线程数
+  corePoolSize: 5
+  # 配置最大线程数
+  maxPoolSize: 10
+  # 配置队列大小
+  queueCapacity: 100
+  # 配置线程池中的线程的名称前缀
+  threadNamePrefix: async-service-

@@ -10,4 +10,10 @@
         <result column="create_time" property="createTime" />
     </resultMap>
 
+    <insert id="saveUserList" parameterType="list">
+        insert into user (id,name,password,create_time) values 
+        <foreach collection="userList" item="user" index="index" separator=",">
+            (#{user.id},#{user.name},#{user.password},#{user.createTime})
+        </foreach>
+    </insert>
 </mapper>
