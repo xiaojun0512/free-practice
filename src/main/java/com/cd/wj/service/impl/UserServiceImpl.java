@@ -10,10 +10,12 @@ import com.cd.wj.utils.MD5Util;
 import com.cd.wj.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,6 +37,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Resource
     private ThreadService threadService;
+    @Resource
+    private RedisTemplate<String, Serializable> redisTemplate;
 
     @Override
     public String login(User user) {
@@ -45,6 +49,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (ObjectUtils.isNotEmpty(u)) {
             token = TokenUtil.getToken(u);
         }
+        //将token存入redis中,用到redis做token缓存时可这样使用
+        /*redisTemplate.opsForValue().set(u.getId(),token);*/
         return token;
     }
 

@@ -1,6 +1,7 @@
 package com.cd.wj.controller;
 
 
+import com.cd.wj.config.UserLoginToken;
 import com.cd.wj.entity.User;
 import com.cd.wj.service.UserService;
 import com.cd.wj.utils.CommonResult;
@@ -37,6 +38,7 @@ public class UserController {
         return CommonResult.success(userService.login(user));
     }
 
+    @UserLoginToken
     @PostMapping("addUser")
     @ApiOperation(value = "新增用户")
     public CommonResult<String> addUser(@RequestBody User user) {

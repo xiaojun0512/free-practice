@@ -8,11 +8,13 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.cd.wj.entity.User;
 import com.cd.wj.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
@@ -22,6 +24,8 @@ import java.lang.reflect.Method;
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RedisTemplate<String, Serializable> redisTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -52,6 +56,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 String userId;
                 try {
                     userId = JWT.decode(token).getAudience().get(0);
+                    //根据userId从redis中取出token,然后比较两个token是否相等,用到redis做token缓存时可这样使用
+                    /*Serializable serializable = redisTemplate.opsForValue().get(userId);
+                    boolean flag = token.equals(serializable);*/
                 } catch (JWTDecodeException j) {
                     throw new Exception("401");
                 }
